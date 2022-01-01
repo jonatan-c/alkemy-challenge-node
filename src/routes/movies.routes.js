@@ -2,7 +2,10 @@ const { Router } = require("express");
 const router = Router();
 
 const { auth } = require("../middlewares/auth.middlewares");
-const { isIdMSinDB } = require("../middlewares/movies.middlewares");
+const {
+  isIdMSinDB,
+  isQualificationInRange,
+} = require("../middlewares/movies.middlewares");
 
 const {
   getMovie,
@@ -25,7 +28,7 @@ const upload = multer({ storage });
 
 router.get("/", getMovieQuery);
 router.get("/:id", isIdMSinDB, getMovie); // funciona, no midificar
-router.post("/", upload.single("image_ms"), addMovie);
+router.post("/", upload.single("image_ms"), isQualificationInRange, addMovie);
 router.put("/:id", isIdMSinDB, editMovie);
 router.delete("/:id", isIdMSinDB, deleteMovie);
 module.exports = router;
