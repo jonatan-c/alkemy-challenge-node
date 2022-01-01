@@ -10,6 +10,9 @@ db.sequelize.sync().then(() => {
   console.log("DB has been created successfully.");
 });
 
+const authRoutes = require("./routes/auth.routes");
+const charactersRoutes = require("./routes/character.routes");
+
 //***********************SWAGGER**********************/
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
@@ -26,5 +29,7 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 //*****************************************************
+app.use("/auth", authRoutes);
+app.use("/characters", charactersRoutes);
 
 module.exports = app;
