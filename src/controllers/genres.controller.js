@@ -2,7 +2,6 @@ require("dotenv").config();
 const GenreDB = require("../models/genres.model");
 const fs = require("fs");
 const path = require("path");
-const fetch = require("node-fetch");
 
 async function addGenre(req, res) {
   const data = fs.readFileSync(

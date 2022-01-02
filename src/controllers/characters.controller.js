@@ -3,7 +3,6 @@ const CharacterDB = require("../models/characters.model");
 const TableUion_Movies_Series = require("../models/table_character_movieOrSerie.model");
 const fs = require("fs");
 const path = require("path");
-const fetch = require("node-fetch");
 
 //params
 async function getCharacter(req, res) {
@@ -67,6 +66,7 @@ async function getCharacter(req, res) {
 async function getCharacterQuery(req, res) {
   const movies2 = await CharacterDB.findAll({
     include: ["Movies1"],
+    // include: [{ all: true }],
   });
   // Escribe lo que esta en base de datos en la carpeta dbimages
   movies2.map((img) => {

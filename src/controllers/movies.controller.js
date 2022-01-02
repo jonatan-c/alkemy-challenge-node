@@ -1,7 +1,6 @@
 const Movies_Series = require("../models/moviesOrSeries.model");
 const fs = require("fs");
 const path = require("path");
-const fetch = require("node-fetch");
 //params
 async function getMovie(req, res) {
   const { id } = req.params;
@@ -83,7 +82,7 @@ async function getMovieQuery(req, res) {
           )}`,
           Titulo: item.title_ms,
           Fecha_Estreno: item.creation_date_ms,
-          Genero: item.Genre.name_genre,
+          Genero: item.name_genre,
         },
       ],
       Details: [

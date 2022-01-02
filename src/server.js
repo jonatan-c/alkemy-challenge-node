@@ -4,6 +4,7 @@ const db = require("./models/Relations");
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 db.sequelize.sync().then(() => {
   console.log("DB has been created successfully.");
