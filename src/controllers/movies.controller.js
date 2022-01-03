@@ -31,6 +31,7 @@ async function getMovie(req, res) {
       const info = {
         information: [
           {
+            id_ms: movies2.id_ms,
             Image: `http://localhost:3090/${imagesDir}`,
             Title: movies2.title_ms,
             Date_Release: movies2.creation_date_ms,
@@ -39,6 +40,7 @@ async function getMovie(req, res) {
         ],
         Personajes: [
           {
+            id_character: movies2.id_character,
             Name: movies2.name_character,
             Age: movies2.age_character,
             Weight: movies2.weight_character,
@@ -77,11 +79,13 @@ async function getMovieQuery(req, res) {
     return {
       information: [
         {
+          id_ms: item.id_ms,
           Imagen: `http://localhost:3090/${imagesDir.find((img) =>
             img.includes(item.id_ms)
           )}`,
           Titulo: item.title_ms,
           Fecha_Estreno: item.creation_date_ms,
+          id_genre: item.id_genre,
           Genero: item.name_genre,
         },
       ],
@@ -89,6 +93,7 @@ async function getMovieQuery(req, res) {
         {
           Personajes: item.Characters1.map((character) => {
             return {
+              id_character: character.id_character,
               Nombre: character.name_character,
               Edad: character.age_character,
               Peso: character.weight_character,
@@ -117,6 +122,7 @@ async function getMovieQuery(req, res) {
         .toLowerCase()
         .includes(genre.toLowerCase().split(" ").join(""))
     );
+    console.log(mapeo);
     res.json(mapeo);
   } else if (order != undefined) {
     const mapeo = info.sort((a, b) => {

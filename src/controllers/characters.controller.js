@@ -36,6 +36,7 @@ async function getCharacter(req, res) {
       const info = {
         information: [
           {
+            id_character: movies2.id_character,
             Image: `http://localhost:3090/${imagesDir}`,
             Name: movies2.name_character,
           },
@@ -47,7 +48,7 @@ async function getCharacter(req, res) {
             History: movies2.history_character,
             Peliculas_Series_Asociadas: movies2.Movies1.map((pelicula) => {
               return {
-                id: pelicula.id_ms,
+                id_ms: pelicula.id_ms,
                 Title: pelicula.title_ms,
                 Creation: pelicula.creation_date_ms,
               };
@@ -87,6 +88,7 @@ async function getCharacterQuery(req, res) {
     return {
       information: [
         {
+          id_character: movie.id_character,
           Image: `http://localhost:3090/${imagesDir.find((img) =>
             img.includes(movie.id_character)
           )}`,
@@ -100,7 +102,7 @@ async function getCharacterQuery(req, res) {
           History: movie.history_character,
           Peliculas_Series_Asociadas: movie.Movies1.map((pelicula) => {
             return {
-              id: pelicula.id_ms,
+              id_ms: pelicula.id_ms,
               Title: pelicula.title_ms,
               Creation: pelicula.creation_date_ms,
             };
