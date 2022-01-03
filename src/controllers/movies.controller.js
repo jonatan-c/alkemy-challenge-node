@@ -1,7 +1,7 @@
 const Movies_Series = require("../models/moviesOrSeries.model");
 const fs = require("fs");
 const path = require("path");
-//params
+//params v2
 async function getMovie(req, res) {
   const { id } = req.params;
   try {
