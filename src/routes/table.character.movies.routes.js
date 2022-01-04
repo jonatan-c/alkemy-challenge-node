@@ -5,7 +5,9 @@ const {
   addCharacterMovie,
 } = require("../controllers/table.characters.movies.controller");
 
-router.post("/", addCharacterMovie);
+const { auth } = require("../middlewares/auth.middlewares");
+
+router.post("/", auth, addCharacterMovie);
 
 module.exports = router;
 
@@ -19,7 +21,7 @@ module.exports = router;
  *    description: Add a new character movie
  *    parameters:
  *    - name : x-auth-token
- *      value : Authorization token
+ *      value :
  *      required : true
  *      dataType : string
  *      in : header

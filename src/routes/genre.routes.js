@@ -12,13 +12,12 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// const { auth } = require("../middlewares/auth.middlewares");
-// const { isIdCharacterinDB } = require("../middlewares/characters.middlewares");
+const { auth } = require("../middlewares/auth.middlewares");
 const { addGenre, getGenres } = require("../controllers/genres.controller");
 
 router.get("/", getGenres);
 // router.get("/:id", isIdCharacterinDB, getCharacter); // funciona, no midificar
-router.post("/", upload.single("image_genre"), addGenre);
+router.post("/", auth, upload.single("image_genre"), addGenre);
 // router.put("/:id", isIdCharacterinDB, editCharacter);
 // router.delete("/:id", isIdCharacterinDB, deleteCharacter);
 
@@ -34,7 +33,7 @@ module.exports = router;
  *    description: Add a new genre
  *    parameters:
  *    - name : x-auth-token
- *      value : Authorization token
+ *      value :
  *      required : true
  *      dataType : string
  *      in : header

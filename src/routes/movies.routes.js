@@ -26,11 +26,17 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-router.get("/", getMovieQuery);
-router.get("/:id", isIdMSinDB, getMovie); // funciona, no midificar
-router.post("/", upload.single("image_ms"), isQualificationInRange, addMovie);
-router.put("/:id", isIdMSinDB, editMovie);
-router.delete("/:id", isIdMSinDB, deleteMovie);
+router.get("/", auth, getMovieQuery);
+router.get("/:id", auth, isIdMSinDB, getMovie); // funciona, no midificar
+router.post(
+  "/",
+  auth,
+  upload.single("image_ms"),
+  isQualificationInRange,
+  addMovie
+);
+router.put("/:id", auth, isIdMSinDB, editMovie);
+router.delete("/:id", auth, isIdMSinDB, deleteMovie);
 module.exports = router;
 
 /**
@@ -43,7 +49,7 @@ module.exports = router;
  *    description: Get all movies or series
  *    parameters:
  *    - name : x-auth-token
- *      value : Authorization token
+ *      value :
  *      required : true
  *      dataType : string
  *      in : header
@@ -80,7 +86,7 @@ module.exports = router;
  *    description: Get a movie or serie
  *    parameters:
  *    - name : x-auth-token
- *      value : Authorization token
+ *      value :
  *      required : true
  *      dataType : string
  *      in : header
@@ -104,7 +110,7 @@ module.exports = router;
  *    description: Add a movie or serie
  *    parameters:
  *    - name : x-auth-token
- *      value : Authorization token
+ *      value :
  *      required : true
  *      dataType : string
  *      in : header
@@ -148,7 +154,7 @@ module.exports = router;
  *    description: Edit a movie or serie
  *    parameters:
  *    - name : x-auth-token
- *      value : Authorization token
+ *      value :
  *      required : true
  *      dataType : string
  *      in : header
@@ -192,7 +198,7 @@ module.exports = router;
  *    description:  Delete a movie or serie
  *    parameters:
  *    - name : x-auth-token
- *      value : Authorization token
+ *      value :
  *      required : true
  *      dataType : string
  *      in : header

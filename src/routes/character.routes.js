@@ -22,11 +22,11 @@ const {
   getCharacterQuery,
 } = require("../controllers/characters.controller");
 
-router.get("/", getCharacterQuery);
-router.get("/:id", isIdCharacterinDB, getCharacter); // funciona, no midificar
-router.post("/", upload.single("image_character"), addCharacter);
-router.put("/:id", isIdCharacterinDB, editCharacter);
-router.delete("/:id", isIdCharacterinDB, deleteCharacter);
+router.get("/", auth, getCharacterQuery);
+router.get("/:id", auth, isIdCharacterinDB, getCharacter); // funciona, no midificar
+router.post("/", auth, upload.single("image_character"), addCharacter);
+router.put("/:id", auth, isIdCharacterinDB, editCharacter);
+router.delete("/:id", auth, isIdCharacterinDB, deleteCharacter);
 module.exports = router;
 
 /**
@@ -39,7 +39,7 @@ module.exports = router;
  *    description: Get all characters
  *    parameters:
  *    - name : x-auth-token
- *      value : Authorization token
+ *      value :
  *      required : true
  *      dataType : string
  *      in : header
@@ -76,7 +76,7 @@ module.exports = router;
  *    description: Get a character by id
  *    parameters:
  *    - name : x-auth-token
- *      value : Authorization token
+ *      value :
  *      required : true
  *      dataType : string
  *      in : header
@@ -100,7 +100,7 @@ module.exports = router;
  *    description: Add a character
  *    parameters:
  *    - name : x-auth-token
- *      value : Authorization token
+ *      value :
  *      required : true
  *      dataType : string
  *      in : header
@@ -144,7 +144,7 @@ module.exports = router;
  *    description: Edit a character by id
  *    parameters:
  *    - name : x-auth-token
- *      value : Authorization token
+ *      value :
  *      required : true
  *      dataType : string
  *      in : header
@@ -188,7 +188,7 @@ module.exports = router;
  *    description:  Delete a character by id
  *    parameters:
  *    - name : x-auth-token
- *      value : Authorization token
+ *      value :
  *      required : true
  *      dataType : string
  *      in : header

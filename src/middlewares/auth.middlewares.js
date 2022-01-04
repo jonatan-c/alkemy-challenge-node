@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const jwt = require("jsonwebtoken");
 
 const auth = (req, res, next) => {
@@ -6,7 +8,7 @@ const auth = (req, res, next) => {
 
   //Revisar si no hay token
   if (token) {
-    jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
       if (err) {
         return res.json({ mensaje: "Token inválida" });
       } else {

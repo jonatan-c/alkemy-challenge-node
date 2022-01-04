@@ -60,13 +60,11 @@ module.exports = router;
  *    description: You can login a user
  *    parameters:
  *    - name: email
- *      value : correo@correo.com
  *      description:  Email of the user
  *      in: formData
  *      required: true
  *      type: string
  *    - name: password1
- *      value : correo
  *      description: password of the user
  *      in: formData
  *      required: true

@@ -67,7 +67,7 @@ async function loginUser(req, res) {
     //Crear y firmar JWT
     jwt.sign(
       payload,
-      process.env.SECRET_KEY,
+      process.env.JWT_SECRET,
       {
         expiresIn: 3600,
       },
