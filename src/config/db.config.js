@@ -1,13 +1,14 @@
+require("dotenv").config();
 const { Sequelize } = require("sequelize");
 
 const sequelize = new Sequelize(
-  process.env.MYSQL_DB_Name || "alkemy_node",
-  process.env.MYSQL_DB_User || "root",
-  process.env.MYSQL_DB_Password || "asd123",
+  process.env.DB_DATABASE,
+  process.env.DB_USERNAME,
+  process.env.DB_PASSWORD,
   {
-    host: process.env.MYSQL_DB_Host || "localhost",
-    port: Number(process.env.MYSQL_DB_Port) || 3306,
-    dialect: "mysql",
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    dialect: process.env.DB_DIALECT,
     logging: false,
     define: {
       freezeTableName: true,
